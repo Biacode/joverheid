@@ -11,18 +11,25 @@ import javax.ws.rs.client.Client;
 public abstract class AbstractOverheidClient {
 
     //region Dependencies
-    private Client client;
+    private final Client client;
+
+    private final String apiKey;
     //endregion
 
     //region Constructors
-    public AbstractOverheidClient(final Client client) {
+    public AbstractOverheidClient(final Client client, final String apiKey) {
         this.client = client;
+        this.apiKey = apiKey;
     }
     //endregion
 
     //region Public methods
     protected Client getClient() {
         return client;
+    }
+
+    protected String getApiKey() {
+        return apiKey;
     }
     //endregion
 }

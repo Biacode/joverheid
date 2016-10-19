@@ -7,4 +7,5 @@ package com.sfl.overheid.api.client;
  * Time: 3:01 PM
  */
 public interface OverheidClient {
+    Object test();
 }

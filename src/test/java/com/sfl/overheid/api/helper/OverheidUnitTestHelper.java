@@ -1,7 +1,7 @@
 package com.sfl.overheid.api.helper;
 
 import com.sfl.overheid.api.model.common.AbstractOverheidResponse;
-import com.sfl.overheid.api.model.common.OverheidResponse;
+import com.sfl.overheid.api.model.common.OverheidResult;
 
 import static org.junit.Assert.*;
 
@@ -19,8 +19,8 @@ public final class OverheidUnitTestHelper {
     //endregion
 
     //region Common
-    public <T extends AbstractOverheidResponse> void assertResultResponse(final OverheidResponse<T> expectedResponse,
-                                                                          final OverheidResponse<T> result) {
+    public <T extends AbstractOverheidResponse> void assertResultResponse(final OverheidResult<T> expectedResponse,
+                                                                          final OverheidResult<T> result) {
         assertNotNull(result);
         assertNotNull(expectedResponse);
         if (result.getResponse() != null) {

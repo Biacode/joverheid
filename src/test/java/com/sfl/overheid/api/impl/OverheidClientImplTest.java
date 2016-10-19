@@ -11,6 +11,7 @@ import org.junit.Test;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import java.util.UUID;
 
 import static org.easymock.EasyMock.reset;
 
@@ -56,7 +57,7 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
 
     //region Constructors
     public OverheidClientImplTest() {
-        overheidClient = new OverheidClientImpl(client);
+        overheidClient = new OverheidClientImpl(client, UUID.randomUUID().toString());
     }
     //endregion
 

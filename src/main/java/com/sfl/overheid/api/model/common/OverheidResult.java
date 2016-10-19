@@ -15,7 +15,7 @@ import java.io.Serializable;
  * Date: 10/4/16
  * Time: 3:55 PM
  */
-public class OverheidResponse<T extends AbstractOverheidResponse> implements Serializable {
+public class OverheidResult<T extends AbstractOverheidResponse> implements Serializable {
     private static final long serialVersionUID = -679286511899959879L;
 
     //region Properties
@@ -29,14 +29,14 @@ public class OverheidResponse<T extends AbstractOverheidResponse> implements Ser
     //endregion
 
     //region Constructors
-    public OverheidResponse() {
+    public OverheidResult() {
     }
 
-    public OverheidResponse(final T response) {
+    public OverheidResult(final T response) {
         this.response = response;
     }
 
-    public OverheidResponse(final ErrorTypeModel error) {
+    public OverheidResult(final ErrorTypeModel error) {
         this.error = error;
     }
     //endregion
@@ -53,10 +53,10 @@ public class OverheidResponse<T extends AbstractOverheidResponse> implements Ser
         if (this == o) {
             return true;
         }
-        if (!(o instanceof OverheidResponse)) {
+        if (!(o instanceof OverheidResult)) {
             return false;
         }
-        final OverheidResponse<?> that = (OverheidResponse<?>) o;
+        final OverheidResult<?> that = (OverheidResult<?>) o;
         return new EqualsBuilder()
                 .append(error, that.error)
                 .append(response, that.response)
