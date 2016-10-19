@@ -6,7 +6,7 @@ package com.sfl.overheid.api.model.common;
  * Date: 10/6/16
  * Time: 3:28 PM
  */
-public enum ErrorTypeModel {
+public enum OverheidErrorTypeModel {
     BAD_REQUEST(400),
     NOT_AUTHORIZED(401),
     FORBIDDEN(403),
@@ -14,7 +14,7 @@ public enum ErrorTypeModel {
 
     final int code;
 
-    ErrorTypeModel(final int code) {
+    OverheidErrorTypeModel(final int code) {
         this.code = code;
     }
 

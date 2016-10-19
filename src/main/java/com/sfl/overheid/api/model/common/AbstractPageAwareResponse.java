@@ -1,9 +1,7 @@
-package com.sfl.overheid.api.model.response;
+package com.sfl.overheid.api.model.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sfl.overheid.api.model.Embedded;
 import com.sfl.overheid.api.model.LinksModel;
-import com.sfl.overheid.api.model.common.AbstractOverheidResponse;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,10 +10,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * User: Arthur Asatryan
  * Company: SFL LLC
  * Date: 10/19/16
- * Time: 3:44 PM
+ * Time: 5:27 PM
  */
-public class OverheidResponse extends AbstractOverheidResponse {
-    private static final long serialVersionUID = 4292100832418027473L;
+public abstract class AbstractPageAwareResponse extends AbstractOverheidResponse {
+    private static final long serialVersionUID = 2843016193536570530L;
 
     //region Properties
     @JsonProperty("totalItemCount")
@@ -29,21 +27,20 @@ public class OverheidResponse extends AbstractOverheidResponse {
 
     @JsonProperty("_links")
     private LinksModel links;
-
-    @JsonProperty("_embedded")
-    private Embedded embedded;
     //endregion
 
     //region Constructors
-    public OverheidResponse() {
+    public AbstractPageAwareResponse() {
     }
 
-    public OverheidResponse(final int totalItemCount, final int pageCount, final int size, final LinksModel links, final Embedded embedded) {
+    public AbstractPageAwareResponse(final int totalItemCount,
+                                     final int pageCount,
+                                     final int size,
+                                     final LinksModel links) {
         this.totalItemCount = totalItemCount;
         this.pageCount = pageCount;
         this.size = size;
         this.links = links;
-        this.embedded = embedded;
     }
     //endregion
 
@@ -53,16 +50,15 @@ public class OverheidResponse extends AbstractOverheidResponse {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof OverheidResponse)) {
+        if (!(o instanceof AbstractPageAwareResponse)) {
             return false;
         }
-        final OverheidResponse that = (OverheidResponse) o;
+        final AbstractPageAwareResponse that = (AbstractPageAwareResponse) o;
         return new EqualsBuilder()
                 .append(totalItemCount, that.totalItemCount)
                 .append(pageCount, that.pageCount)
                 .append(size, that.size)
                 .append(links, that.links)
-                .append(embedded, that.embedded)
                 .isEquals();
     }
 
@@ -73,7 +69,6 @@ public class OverheidResponse extends AbstractOverheidResponse {
                 .append(pageCount)
                 .append(size)
                 .append(links)
-                .append(embedded)
                 .toHashCode();
     }
 
@@ -84,7 +79,6 @@ public class OverheidResponse extends AbstractOverheidResponse {
                 .append("pageCount", pageCount)
                 .append("size", size)
                 .append("links", links)
-                .append("embedded", embedded)
                 .toString();
     }
     //endregion
@@ -120,14 +114,6 @@ public class OverheidResponse extends AbstractOverheidResponse {
 
     public void setLinks(final LinksModel links) {
         this.links = links;
-    }
-
-    public Embedded getEmbedded() {
-        return embedded;
-    }
-
-    public void setEmbedded(final Embedded embedded) {
-        this.embedded = embedded;
     }
     //endregion
 }

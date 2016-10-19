@@ -21,7 +21,7 @@ public class OverheidResult<T extends AbstractOverheidResponse> implements Seria
     //region Properties
     @JsonProperty("error")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private ErrorTypeModel error;
+    private OverheidErrorTypeModel error;
 
     @JsonUnwrapped
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -36,7 +36,7 @@ public class OverheidResult<T extends AbstractOverheidResponse> implements Seria
         this.response = response;
     }
 
-    public OverheidResult(final ErrorTypeModel error) {
+    public OverheidResult(final OverheidErrorTypeModel error) {
         this.error = error;
     }
     //endregion
@@ -81,11 +81,11 @@ public class OverheidResult<T extends AbstractOverheidResponse> implements Seria
     //endregion
 
     //region Properties getters and setters
-    public ErrorTypeModel getError() {
+    public OverheidErrorTypeModel getError() {
         return error;
     }
 
-    public void setError(final ErrorTypeModel error) {
+    public void setError(final OverheidErrorTypeModel error) {
         this.error = error;
     }
 

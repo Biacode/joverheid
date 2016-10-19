@@ -12,10 +12,10 @@ import java.util.List;
  * User: Arthur Asatryan
  * Company: SFL LLC
  * Date: 10/19/16
- * Time: 3:24 PM
+ * Time: 5:47 PM
  */
-public class Embedded implements Serializable {
-    private static final long serialVersionUID = 5587461835871092978L;
+public class EmbeddedCorporationModel implements Serializable {
+    private static final long serialVersionUID = -3084975052067266217L;
 
     //region Properties
     @JsonProperty("rechtspersoon")
@@ -23,10 +23,10 @@ public class Embedded implements Serializable {
     //endregion
 
     //region Constructors
-    public Embedded() {
+    public EmbeddedCorporationModel() {
     }
 
-    public Embedded(final List<CorporationModel> corporations) {
+    public EmbeddedCorporationModel(final List<CorporationModel> corporations) {
         this.corporations = corporations;
     }
     //endregion
@@ -37,12 +37,12 @@ public class Embedded implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Embedded)) {
+        if (!(o instanceof EmbeddedCorporationModel)) {
             return false;
         }
-        final Embedded embedded = (Embedded) o;
+        final EmbeddedCorporationModel that = (EmbeddedCorporationModel) o;
         return new EqualsBuilder()
-                .append(corporations, embedded.corporations)
+                .append(corporations, that.corporations)
                 .isEquals();
     }
 

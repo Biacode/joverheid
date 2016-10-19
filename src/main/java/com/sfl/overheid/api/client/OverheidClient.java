@@ -1,5 +1,8 @@
 package com.sfl.overheid.api.client;
 
+import com.sfl.overheid.api.model.common.OverheidResult;
+import com.sfl.overheid.api.model.response.GetCorporationsResponse;
+
 /**
  * User: Arthur Asatryan
  * Company: SFL LLC
@@ -7,5 +10,7 @@ package com.sfl.overheid.api.client;
  * Time: 3:01 PM
  */
 public interface OverheidClient {
-    Object test();
+    OverheidResult<GetCorporationsResponse> test();
+
+    Object foo();
 }

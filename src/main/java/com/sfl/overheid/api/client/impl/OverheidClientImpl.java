@@ -3,13 +3,15 @@ package com.sfl.overheid.api.client.impl;
 import com.sfl.overheid.api.client.AbstractOverheidClient;
 import com.sfl.overheid.api.client.OverheidClient;
 import com.sfl.overheid.api.model.common.AbstractOverheidRequest;
+import com.sfl.overheid.api.model.common.OverheidErrorTypeModel;
 import com.sfl.overheid.api.model.common.OverheidResult;
-import com.sfl.overheid.api.model.response.OverheidResponse;
+import com.sfl.overheid.api.model.response.GetCorporationsResponse;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +35,7 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
     private static final String QUERY_PARAM_DATE_FORMAT = "YYYY-MM-dd";
 
     //region Exception messages
+    private static final String NOT_AUTHORIZED_EXCEPTION_MSG = "Not authorized exception - {} occur while processing request - {}";
     //endregion
 
     //endregion
@@ -46,15 +49,38 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
 
     //region Public methods
     @Override
-    public OverheidResult<OverheidResponse> test() {
+    public OverheidResult<GetCorporationsResponse> test() {
         try {
             return getClient()
                     .target(BASE_PATH)
                     .queryParam("filters[postcode]", "3083cz")
                     .request(MediaType.APPLICATION_JSON_TYPE)
                     .header(API_KEY_HEADER_NAME, getApiKey())
-                    .get(new GenericType<OverheidResult<OverheidResponse>>() {
+                    .get(new GenericType<OverheidResult<GetCorporationsResponse>>() {
                     });
+        } catch (final NotAuthorizedException ignore) {
+            LOGGER.warn(NOT_AUTHORIZED_EXCEPTION_MSG, ignore /*request*/);
+            return new OverheidResult<>(OverheidErrorTypeModel.NOT_AUTHORIZED);
+        } catch (final Exception ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+
+    @Override
+    public Object foo() {
+        try {
+            return getClient()
+                    .target(BASE_PATH)
+                    .path("24477501")
+//                    .path("0000")
+                    .request(MediaType.APPLICATION_JSON_TYPE)
+                    .header(API_KEY_HEADER_NAME, getApiKey())
+                    .get(new GenericType<Object>() {
+                    });
+        } catch (final NotAuthorizedException ignore) {
+            LOGGER.warn(NOT_AUTHORIZED_EXCEPTION_MSG, ignore /*request*/);
+            return new OverheidResult<>(OverheidErrorTypeModel.NOT_AUTHORIZED);
         } catch (final Exception ex) {
             System.out.println(ex);
         }

@@ -18,7 +18,7 @@ public class MainApplication {
                 ClientBuilder.newBuilder().register(JacksonJsonProvider.class).build(),
                 "9f01f0b265d703e164681e1f232b0c12607724c26e7b417aa396a2280733cbb8"
         );
-        final Object test = overheidClient.test();
+        final Object test = overheidClient.foo();
         System.out.println(test.toString());
     }
 }
