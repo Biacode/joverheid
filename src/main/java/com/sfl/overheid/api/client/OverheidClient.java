@@ -13,4 +13,6 @@ public interface OverheidClient {
     OverheidResult<GetCorporationsResponse> test();
 
     Object foo();
+
+    Object boo();
 }

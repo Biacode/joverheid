@@ -5,7 +5,9 @@ import com.sfl.overheid.api.client.OverheidClient;
 import com.sfl.overheid.api.model.common.AbstractOverheidRequest;
 import com.sfl.overheid.api.model.common.OverheidErrorTypeModel;
 import com.sfl.overheid.api.model.common.OverheidResult;
+import com.sfl.overheid.api.model.response.GetCorporationResponse;
 import com.sfl.overheid.api.model.response.GetCorporationsResponse;
+import com.sfl.overheid.api.model.response.SuggestionResponse;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
@@ -29,6 +31,7 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
 
     //region Constants
     private static final String BASE_PATH = "https://overheid.io/api/kvk";
+    private static final String SUGGESTER_BASE_PATH = "https://overheid.io/suggest/kvk/";
 
     private static final String API_KEY_HEADER_NAME = "Ovio-api-key";
 
@@ -68,15 +71,34 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
     }
 
     @Override
-    public Object foo() {
+    public OverheidResult<GetCorporationResponse> foo() {
         try {
             return getClient()
                     .target(BASE_PATH)
                     .path("24477501")
-//                    .path("0000")
+                    .path("0000")
                     .request(MediaType.APPLICATION_JSON_TYPE)
                     .header(API_KEY_HEADER_NAME, getApiKey())
-                    .get(new GenericType<Object>() {
+                    .get(new GenericType<OverheidResult<GetCorporationResponse>>() {
+                    });
+        } catch (final NotAuthorizedException ignore) {
+            LOGGER.warn(NOT_AUTHORIZED_EXCEPTION_MSG, ignore /*request*/);
+            return new OverheidResult<>(OverheidErrorTypeModel.NOT_AUTHORIZED);
+        } catch (final Exception ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+
+    @Override
+    public OverheidResult<SuggestionResponse> boo() {
+        try {
+            return getClient()
+                    .target(SUGGESTER_BASE_PATH)
+                    .path("oudet")
+                    .request(MediaType.APPLICATION_JSON_TYPE)
+                    .header(API_KEY_HEADER_NAME, getApiKey())
+                    .get(new GenericType<OverheidResult<SuggestionResponse>>() {
                     });
         } catch (final NotAuthorizedException ignore) {
             LOGGER.warn(NOT_AUTHORIZED_EXCEPTION_MSG, ignore /*request*/);
