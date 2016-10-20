@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,9 +23,11 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
 
     //region Constructors
     public GetCorporationsRequest() {
+        filters = new HashMap<>();
     }
 
     public GetCorporationsRequest(final Map<String, String> filters) {
+        super();
         this.filters = filters;
     }
     //endregion

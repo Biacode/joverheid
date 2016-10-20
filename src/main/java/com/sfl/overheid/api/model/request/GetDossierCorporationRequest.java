@@ -1,6 +1,6 @@
 package com.sfl.overheid.api.model.request;
 
-import com.sfl.overheid.api.model.common.AbstractPageAwareResponse;
+import com.sfl.overheid.api.model.common.AbstractOverheidRequest;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -11,15 +11,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Date: 10/19/16
  * Time: 5:36 PM
  */
-public class GetDossierCorporationRequest extends AbstractPageAwareResponse {
+public class GetDossierCorporationRequest extends AbstractOverheidRequest {
     private static final long serialVersionUID = -8005074235948641178L;
 
     //region Properties
-    private final String dossiernummer;
+    private final int dossiernummer;
     //endregion
 
     //region Constructors
-    public GetDossierCorporationRequest(final String dossiernummer) {
+    public GetDossierCorporationRequest(final int dossiernummer) {
         this.dossiernummer = dossiernummer;
     }
     //endregion
@@ -57,7 +57,7 @@ public class GetDossierCorporationRequest extends AbstractPageAwareResponse {
     //endregion
 
     //region Properties getters and setters
-    public String getDossiernummer() {
+    public int getDossiernummer() {
         return dossiernummer;
     }
     //endregion

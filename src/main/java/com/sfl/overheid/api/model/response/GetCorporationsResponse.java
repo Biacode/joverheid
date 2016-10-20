@@ -19,7 +19,7 @@ public class GetCorporationsResponse extends AbstractPageAwareResponse {
 
     //region Properties
     @JsonProperty("_embedded")
-    private EmbeddedCorporationsModel embeddedCorporationsModel;
+    private EmbeddedCorporationsModel embedded;
     //endregion
 
     //region Constructors
@@ -30,9 +30,9 @@ public class GetCorporationsResponse extends AbstractPageAwareResponse {
                                    final int pageCount,
                                    final int size,
                                    final LinksModel links,
-                                   final EmbeddedCorporationsModel embeddedCorporationsModel) {
+                                   final EmbeddedCorporationsModel embedded) {
         super(totalItemCount, pageCount, size, links);
-        this.embeddedCorporationsModel = embeddedCorporationsModel;
+        this.embedded = embedded;
     }
     //endregion
 
@@ -48,7 +48,7 @@ public class GetCorporationsResponse extends AbstractPageAwareResponse {
         final GetCorporationsResponse that = (GetCorporationsResponse) o;
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
-                .append(embeddedCorporationsModel, that.embeddedCorporationsModel)
+                .append(embedded, that.embedded)
                 .isEquals();
     }
 
@@ -56,25 +56,25 @@ public class GetCorporationsResponse extends AbstractPageAwareResponse {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(embeddedCorporationsModel)
+                .append(embedded)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("embeddedCorporationsModel", embeddedCorporationsModel)
+                .append("embedded", embedded)
                 .toString();
     }
     //endregion
 
     //region Properties getters and setters
-    public EmbeddedCorporationsModel getEmbeddedCorporationsModel() {
-        return embeddedCorporationsModel;
+    public EmbeddedCorporationsModel getEmbedded() {
+        return embedded;
     }
 
-    public void setEmbeddedCorporationsModel(final EmbeddedCorporationsModel embeddedCorporationsModel) {
-        this.embeddedCorporationsModel = embeddedCorporationsModel;
+    public void setEmbedded(final EmbeddedCorporationsModel embedded) {
+        this.embedded = embedded;
     }
     //endregion
 }

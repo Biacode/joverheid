@@ -10,7 +10,8 @@ public enum OverheidErrorTypeModel {
     BAD_REQUEST(400),
     NOT_AUTHORIZED(401),
     FORBIDDEN(403),
-    UNPROCESSABLE(422);
+    UNPROCESSABLE(422),
+    UNKNOWN(1024);
 
     final int code;
 

@@ -15,13 +15,13 @@ public class GetCorporationRequest extends AbstractOverheidRequest {
     private static final long serialVersionUID = 2608168718116097744L;
 
     //region Properties
-    private final String dossiernummer;
+    private final int dossiernummer;
 
     private final String subdossiernummer;
     //endregion
 
     //region Constructors
-    public GetCorporationRequest(final String dossiernummer, final String subdossiernummer) {
+    public GetCorporationRequest(final int dossiernummer, final String subdossiernummer) {
         this.dossiernummer = dossiernummer;
         this.subdossiernummer = subdossiernummer;
     }
@@ -61,7 +61,7 @@ public class GetCorporationRequest extends AbstractOverheidRequest {
     //endregion
 
     //region Properties getters and setters
-    public String getDossiernummer() {
+    public int getDossiernummer() {
         return dossiernummer;
     }
 

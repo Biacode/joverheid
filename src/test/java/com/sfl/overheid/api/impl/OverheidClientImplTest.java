@@ -14,6 +14,7 @@ import javax.ws.rs.client.WebTarget;
 import java.util.UUID;
 
 import static org.easymock.EasyMock.reset;
+import static org.junit.Assert.fail;
 
 /**
  * User: Arthur Asatryan
@@ -24,21 +25,10 @@ import static org.easymock.EasyMock.reset;
 public class OverheidClientImplTest extends AbstractOverheidUniTest {
 
     //region Constants
-    private static final String BASE_PATH = "https://api.overheid.com";
+    private static final String API_BASE_PATH = "https://overheid.io/api/kvk";
+    private static final String SUGGESTER_BASE_PATH = "https://overheid.io/suggest/kvk";
 
-    private static final String API_VERSION = "v1";
-
-    private static final String CALENDARS_PATH = "calendars";
-
-    private static final String CHANNELS_PATH = "channels";
-
-    private static final String PROFILES_PATH = "profiles";
-
-    private static final String AUTH_HEADER_KEY = "Authorization";
-
-    private static final String ACCOUNT_PATH = "account";
-
-    private static final String EVENTS = "events";
+    private static final String API_KEY_HEADER_NAME = "Ovio-api-key";
     //endregion
 
     //region Test subject and mocks
@@ -72,14 +62,26 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
 
     //region Test methods
 
+    //region getCorporation
+
+    /**
+     * With invalid arguments
+     */
     @Test
-    public void testDummy() {
+    public void testGetCorporationScenario1() {
         resetAll();
         // test data
         // expectations
         replayAll();
+        try {
+            overheidClient.getCorporation(null);
+            fail();
+        } catch (final IllegalArgumentException ignore) {
+        }
         verifyAll();
     }
+
+    //endregion
 
     //endregion
 

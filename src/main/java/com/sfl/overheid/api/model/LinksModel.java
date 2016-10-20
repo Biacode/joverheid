@@ -3,7 +3,6 @@ package com.sfl.overheid.api.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
@@ -26,6 +25,9 @@ public class LinksModel implements Serializable {
     @JsonProperty("first")
     private LinkItemModel first;
 
+    @JsonProperty("last")
+    private LinkItemModel last;
+
     @JsonProperty("burden")
     private LinkItemModel burden;
     //endregion
@@ -37,10 +39,12 @@ public class LinksModel implements Serializable {
     public LinksModel(final LinkItemModel self,
                       final LinkItemModel next,
                       final LinkItemModel first,
+                      final LinkItemModel last,
                       final LinkItemModel burden) {
         this.self = self;
         this.next = next;
         this.first = first;
+        this.last = last;
         this.burden = burden;
     }
     //endregion
@@ -54,12 +58,13 @@ public class LinksModel implements Serializable {
         if (!(o instanceof LinksModel)) {
             return false;
         }
-        final LinksModel linksModel = (LinksModel) o;
+        final LinksModel that = (LinksModel) o;
         return new EqualsBuilder()
-                .append(self, linksModel.self)
-                .append(next, linksModel.next)
-                .append(first, linksModel.first)
-                .append(burden, linksModel.burden)
+                .append(self, that.self)
+                .append(next, that.next)
+                .append(first, that.first)
+                .append(last, that.last)
+                .append(burden, that.burden)
                 .isEquals();
     }
 
@@ -69,19 +74,11 @@ public class LinksModel implements Serializable {
                 .append(self)
                 .append(next)
                 .append(first)
+                .append(last)
                 .append(burden)
                 .toHashCode();
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("self", self)
-                .append("next", next)
-                .append("first", first)
-                .append("burden", burden)
-                .toString();
-    }
     //endregion
 
     //region Properties getters and setters
@@ -107,6 +104,14 @@ public class LinksModel implements Serializable {
 
     public void setFirst(final LinkItemModel first) {
         this.first = first;
+    }
+
+    public LinkItemModel getLast() {
+        return last;
+    }
+
+    public void setLast(final LinkItemModel last) {
+        this.last = last;
     }
 
     public LinkItemModel getBurden() {
