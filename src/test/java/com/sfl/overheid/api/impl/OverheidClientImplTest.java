@@ -45,13 +45,6 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
     private static final String SUGGESTER_BASE_PATH = "https://overheid.io/suggest/kvk";
 
     private static final String API_KEY_HEADER_NAME = "Ovio-api-key";
-
-    //region Exception messages
-    private static final String NOT_AUTHORIZED_EXCEPTION_MSG
-            = "Not authorized exception - {} occur while processing request - {}";
-
-    private static final String UNKNOWN_EXCEPTION_MSG
-            = "Unknown error - {} occur while processing request - {}";
     //endregion
 
     private static final String API_KEY = UUID.randomUUID().toString();

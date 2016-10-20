@@ -8,6 +8,7 @@ import javax.ws.rs.client.Client;
  * Date: 10/5/16
  * Time: 11:35 AM
  */
+@SuppressWarnings({"squid:S1609"})
 public interface OverheidJerseyClientBuilder {
     Client build();
 }
