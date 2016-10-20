@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
-            <!--<scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -150,7 +150,7 @@
                 <groupId>org.glassfish.jersey.core</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>${jersey.client.version}</version>
-                <!--<scope>test</scope>-->
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
