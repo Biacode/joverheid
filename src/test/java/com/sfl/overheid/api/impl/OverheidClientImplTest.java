@@ -159,7 +159,7 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
         expect(webTarget.path(Integer.toString(request.getDossiernummer()))).andReturn(webTarget);
         expect(webTarget.path(request.getSubdossiernummer())).andReturn(webTarget);
         expect(webTarget.request(MediaType.APPLICATION_JSON_TYPE)).andReturn(builder);
-        expect(builder.header(API_KEY_HEADER_NAME, API_KEY)).andReturn(builder);
+        expectAuthHeader();
         expect(builder.get(new GenericType<OverheidResult<GetCorporationResponse>>() {
         })).andReturn(expectedResponse);
         replayAll();
@@ -249,7 +249,7 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
             expect(webTarget.queryParam(key, request.getFilters().get(key))).andReturn(webTarget);
         }
         expect(webTarget.request(MediaType.APPLICATION_JSON_TYPE)).andReturn(builder);
-        expect(builder.header(API_KEY_HEADER_NAME, API_KEY)).andReturn(builder);
+        expectAuthHeader();
         expect(builder.get(new GenericType<OverheidResult<GetCorporationsResponse>>() {
         })).andReturn(expectedResponse);
         replayAll();
@@ -325,7 +325,7 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
         expect(client.target(API_BASE_PATH)).andReturn(webTarget);
         expect(webTarget.path(Integer.toString(request.getDossiernummer()))).andReturn(webTarget);
         expect(webTarget.request(MediaType.APPLICATION_JSON_TYPE)).andReturn(builder);
-        expect(builder.header(API_KEY_HEADER_NAME, API_KEY)).andReturn(builder);
+        expectAuthHeader();
         expect(builder.get(new GenericType<OverheidResult<GetDossierCorporationResponse>>() {
         })).andReturn(expectedResponse);
         replayAll();
@@ -417,7 +417,7 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
             expect(webTarget.queryParam(key, request.getFilters().get(key))).andReturn(webTarget);
         }
         expect(webTarget.request(MediaType.APPLICATION_JSON_TYPE)).andReturn(builder);
-        expect(builder.header(API_KEY_HEADER_NAME, API_KEY)).andReturn(builder);
+        expectAuthHeader();
         expect(builder.get(new GenericType<OverheidResult<SuggestionResponse>>() {
         })).andReturn(expectedResponse);
         replayAll();
@@ -429,4 +429,9 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
 
     //endregion
 
+    //region Utility methods
+    private void expectAuthHeader() {
+        expect(builder.header(API_KEY_HEADER_NAME, API_KEY)).andReturn(builder);
+    }
+    //endregion
 }
