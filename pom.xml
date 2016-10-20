@@ -26,14 +26,14 @@
 
         <!--Testing frameworks-->
         <jersey.client.version>2.23.2</jersey.client.version>
+        <maven.surfire.version>2.19.1</maven.surfire.version>
         <easymock.version>3.4</easymock.version>
         <junit.version>4.12</junit.version>
-        <maven.surfire.version>2.19.1</maven.surfire.version>
         <!-- Sonar properties -->
         <sonar.language>java</sonar.language>
-        <sonar.test>${project.build.directory}/test-classes</sonar.test>
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
         <sonar.sources>${project.basedir}/src/main/</sonar.sources>
+        <sonar.test>${project.build.directory}/test-classes</sonar.test>
         <sonar.exclusions>
             **api/model/**
         </sonar.exclusions>
@@ -45,7 +45,6 @@
         <sonar.jacoco.reportPath>${project.testresult.directory}/jacoco-ut.exec</sonar.jacoco.reportPath>
         <sonar.jacoco.itReportPath>${project.testresult.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
         <sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
-        <joda-time.version>2.9.4</joda-time.version>
     </properties>
 
     <dependencies>
@@ -66,10 +65,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -115,11 +110,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>${joda-time.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
