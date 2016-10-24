@@ -62,6 +62,9 @@ public class CorporationModel implements Serializable {
     @JsonProperty("vestigingsnummer")
     private int vestigingsnummer;
 
+    @JsonProperty("subtype")
+    private String subtype;
+
     @JsonProperty("_links")
     private LinksModel links;
     //endregion
@@ -85,6 +88,7 @@ public class CorporationModel implements Serializable {
                             final String subdossiernummer,
                             final String type,
                             final int vestigingsnummer,
+                            final String subtype,
                             final LinksModel links) {
         this.actief = actief;
         this.bestaandehandelsnaam = bestaandehandelsnaam;
@@ -101,6 +105,7 @@ public class CorporationModel implements Serializable {
         this.subdossiernummer = subdossiernummer;
         this.type = type;
         this.vestigingsnummer = vestigingsnummer;
+        this.subtype = subtype;
         this.links = links;
     }
     //endregion
@@ -131,6 +136,7 @@ public class CorporationModel implements Serializable {
                 .append(straatUrl, that.straatUrl)
                 .append(subdossiernummer, that.subdossiernummer)
                 .append(type, that.type)
+                .append(subtype, that.subtype)
                 .append(links, that.links)
                 .isEquals();
     }
@@ -153,6 +159,7 @@ public class CorporationModel implements Serializable {
                 .append(subdossiernummer)
                 .append(type)
                 .append(vestigingsnummer)
+                .append(subtype)
                 .append(links)
                 .toHashCode();
     }
@@ -175,6 +182,7 @@ public class CorporationModel implements Serializable {
                 .append("subdossiernummer", subdossiernummer)
                 .append("type", type)
                 .append("vestigingsnummer", vestigingsnummer)
+                .append("subtype", subtype)
                 .append("links", links)
                 .toString();
     }
@@ -299,6 +307,14 @@ public class CorporationModel implements Serializable {
 
     public void setVestigingsnummer(final int vestigingsnummer) {
         this.vestigingsnummer = vestigingsnummer;
+    }
+
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(final String subtype) {
+        this.subtype = subtype;
     }
 
     public LinksModel getLinks() {
