@@ -1,5 +1,9 @@
 package com.sfl.overheid.api.model.common;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.io.Serializable;
 
 /**
@@ -20,6 +24,24 @@ public abstract class AbstractOverheidRequest implements Serializable {
     //endregion
 
     //region Equals, HashCode and ToString
+    @Override
+    public boolean equals(final Object o) {
+        return this == o
+                || o instanceof AbstractOverheidRequest
+                && new EqualsBuilder().isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .toString();
+    }
     //endregion
 
     //region Properties getters and setters
