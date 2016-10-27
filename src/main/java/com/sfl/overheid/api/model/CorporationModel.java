@@ -60,7 +60,7 @@ public class CorporationModel implements Serializable {
     private String type;
 
     @JsonProperty("vestigingsnummer")
-    private int vestigingsnummer;
+    private Integer vestigingsnummer;
 
     @JsonProperty("subtype")
     private String subtype;
@@ -87,7 +87,7 @@ public class CorporationModel implements Serializable {
                             final String straatUrl,
                             final String subdossiernummer,
                             final String type,
-                            final int vestigingsnummer,
+                            final Integer vestigingsnummer,
                             final String subtype,
                             final LinksModel links) {
         this.actief = actief;
@@ -301,11 +301,11 @@ public class CorporationModel implements Serializable {
         this.type = type;
     }
 
-    public int getVestigingsnummer() {
+    public Integer getVestigingsnummer() {
         return vestigingsnummer;
     }
 
-    public void setVestigingsnummer(final int vestigingsnummer) {
+    public void setVestigingsnummer(final Integer vestigingsnummer) {
         this.vestigingsnummer = vestigingsnummer;
     }
 
