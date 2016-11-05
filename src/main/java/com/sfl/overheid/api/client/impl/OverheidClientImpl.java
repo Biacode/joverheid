@@ -21,6 +21,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import java.util.Map;
 
 /**
  * User: Arthur Asatryan
@@ -78,9 +79,9 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
     public OverheidResult<GetCorporationsResponse> getCorporations(final GetCorporationsRequest request) {
         assertOverheidRequest(request);
         try {
-            WebTarget target = getClient().target(API_BASE_PATH);
-            for (final String key : request.getFilters().keySet()) {
-                target = target.queryParam(key, request.getFilters().get(key));
+            WebTarget target = getClient().target(API_BASE_PATH).queryParam("query", request.getQuery());
+            for (final Map.Entry<String, String> entry : request.getFilters().entrySet()) {
+                target = target.queryParam(entry.getKey(), entry.getValue());
             }
             return target
                     .request(MediaType.APPLICATION_JSON_TYPE)
@@ -121,8 +122,8 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
         assertSuggestionRequest(request);
         try {
             WebTarget target = getClient().target(SUGGESTER_BASE_PATH).path(request.getQuery());
-            for (final String key : request.getFilters().keySet()) {
-                target = target.queryParam(key, request.getFilters().get(key));
+            for (final Map.Entry<String, String> entry : request.getFilters().entrySet()) {
+                target = target.queryParam(entry.getKey(), entry.getValue());
             }
             return target
                     .request(MediaType.APPLICATION_JSON_TYPE)

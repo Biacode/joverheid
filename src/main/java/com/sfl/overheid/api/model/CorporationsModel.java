@@ -26,6 +26,9 @@ public class CorporationsModel implements Serializable {
     @JsonProperty("subdossiernummer")
     private String subdossiernummer;
 
+    @JsonProperty("vestigingsnummer")
+    private Integer vestigingsnummer;
+
     @JsonProperty("_links")
     private LinksModel links;
     //endregion
@@ -37,10 +40,12 @@ public class CorporationsModel implements Serializable {
     public CorporationsModel(final int dossiernummer,
                              final String handelsnaam,
                              final String subdossiernummer,
+                             final Integer vestigingsnummer,
                              final LinksModel links) {
         this.dossiernummer = dossiernummer;
         this.handelsnaam = handelsnaam;
         this.subdossiernummer = subdossiernummer;
+        this.vestigingsnummer = vestigingsnummer;
         this.links = links;
     }
     //endregion
@@ -54,12 +59,13 @@ public class CorporationsModel implements Serializable {
         if (!(o instanceof CorporationsModel)) {
             return false;
         }
-        final CorporationsModel embedded = (CorporationsModel) o;
+        final CorporationsModel that = (CorporationsModel) o;
         return new EqualsBuilder()
-                .append(dossiernummer, embedded.dossiernummer)
-                .append(handelsnaam, embedded.handelsnaam)
-                .append(subdossiernummer, embedded.subdossiernummer)
-                .append(links, embedded.links)
+                .append(dossiernummer, that.dossiernummer)
+                .append(handelsnaam, that.handelsnaam)
+                .append(subdossiernummer, that.subdossiernummer)
+                .append(vestigingsnummer, that.vestigingsnummer)
+                .append(links, that.links)
                 .isEquals();
     }
 
@@ -69,6 +75,7 @@ public class CorporationsModel implements Serializable {
                 .append(dossiernummer)
                 .append(handelsnaam)
                 .append(subdossiernummer)
+                .append(vestigingsnummer)
                 .append(links)
                 .toHashCode();
     }
@@ -79,6 +86,7 @@ public class CorporationsModel implements Serializable {
                 .append("dossiernummer", dossiernummer)
                 .append("handelsnaam", handelsnaam)
                 .append("subdossiernummer", subdossiernummer)
+                .append("vestigingsnummer", vestigingsnummer)
                 .append("links", links)
                 .toString();
     }
@@ -107,6 +115,14 @@ public class CorporationsModel implements Serializable {
 
     public void setSubdossiernummer(final String subdossiernummer) {
         this.subdossiernummer = subdossiernummer;
+    }
+
+    public Integer getVestigingsnummer() {
+        return vestigingsnummer;
+    }
+
+    public void setVestigingsnummer(final Integer vestigingsnummer) {
+        this.vestigingsnummer = vestigingsnummer;
     }
 
     public LinksModel getLinks() {
