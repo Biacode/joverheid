@@ -18,6 +18,8 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
     private static final long serialVersionUID = -4426790977831863376L;
 
     //region Properties
+    private String query;
+
     private Map<String, String> filters;
     //endregion
 
@@ -26,8 +28,15 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
         filters = new HashMap<>();
     }
 
-    public GetCorporationsRequest(final Map<String, String> filters) {
-        super();
+    public GetCorporationsRequest(final String query) {
+        this.query = query;
+        final Map<String, String> filters = new HashMap<>();
+        filters.put("fields[]", "vestigingsnummer");
+        this.filters = filters;
+    }
+
+    public GetCorporationsRequest(final String query, final Map<String, String> filters) {
+        this.query = query;
         this.filters = filters;
     }
     //endregion
@@ -43,6 +52,8 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
         }
         final GetCorporationsRequest that = (GetCorporationsRequest) o;
         return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(query, that.query)
                 .append(filters, that.filters)
                 .isEquals();
     }
@@ -50,6 +61,8 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
+                .appendSuper(super.hashCode())
+                .append(query)
                 .append(filters)
                 .toHashCode();
     }
@@ -57,12 +70,21 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .append("query", query)
                 .append("filters", filters)
                 .toString();
     }
     //endregion
 
     //region Properties getters and setters
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(final String query) {
+        this.query = query;
+    }
+
     public Map<String, String> getFilters() {
         return filters;
     }

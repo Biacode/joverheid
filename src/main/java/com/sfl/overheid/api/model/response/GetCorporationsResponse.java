@@ -24,6 +24,7 @@ public class GetCorporationsResponse extends AbstractPageAwareResponse {
 
     //region Constructors
     public GetCorporationsResponse() {
+        embedded = new EmbeddedCorporationsModel();
     }
 
     public GetCorporationsResponse(final int totalItemCount,
