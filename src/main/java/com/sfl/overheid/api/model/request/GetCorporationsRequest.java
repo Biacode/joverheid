@@ -5,9 +5,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * User: Arthur Asatryan
  * Company: SFL LLC
@@ -19,25 +16,14 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
 
     //region Properties
     private String query;
-
-    private Map<String, String> filters;
     //endregion
 
     //region Constructors
     public GetCorporationsRequest() {
-        filters = new HashMap<>();
     }
 
     public GetCorporationsRequest(final String query) {
         this.query = query;
-        final Map<String, String> filters = new HashMap<>();
-        filters.put("fields[]", "vestigingsnummer");
-        this.filters = filters;
-    }
-
-    public GetCorporationsRequest(final String query, final Map<String, String> filters) {
-        this.query = query;
-        this.filters = filters;
     }
     //endregion
 
@@ -54,7 +40,6 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
                 .append(query, that.query)
-                .append(filters, that.filters)
                 .isEquals();
     }
 
@@ -63,7 +48,6 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
                 .append(query)
-                .append(filters)
                 .toHashCode();
     }
 
@@ -71,7 +55,6 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("query", query)
-                .append("filters", filters)
                 .toString();
     }
     //endregion
@@ -83,14 +66,6 @@ public class GetCorporationsRequest extends AbstractOverheidRequest {
 
     public void setQuery(final String query) {
         this.query = query;
-    }
-
-    public Map<String, String> getFilters() {
-        return filters;
-    }
-
-    public void setFilters(final Map<String, String> filters) {
-        this.filters = filters;
     }
     //endregion
 }

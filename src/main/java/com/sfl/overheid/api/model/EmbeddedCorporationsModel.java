@@ -20,7 +20,7 @@ public class EmbeddedCorporationsModel implements Serializable {
 
     //region Properties
     @JsonProperty("rechtspersoon")
-    private List<CorporationsModel> corporations;
+    private List<CorporationModel> corporations;
     //endregion
 
     //region Constructors
@@ -28,7 +28,7 @@ public class EmbeddedCorporationsModel implements Serializable {
         corporations = new ArrayList<>();
     }
 
-    public EmbeddedCorporationsModel(final List<CorporationsModel> corporations) {
+    public EmbeddedCorporationsModel(final List<CorporationModel> corporations) {
         this.corporations = corporations;
     }
     //endregion
@@ -64,11 +64,11 @@ public class EmbeddedCorporationsModel implements Serializable {
     //endregion
 
     //region Properties getters and setters
-    public List<CorporationsModel> getCorporations() {
+    public List<CorporationModel> getCorporations() {
         return corporations;
     }
 
-    public void setCorporations(final List<CorporationsModel> corporations) {
+    public void setCorporations(final List<CorporationModel> corporations) {
         this.corporations = corporations;
     }
     //endregion

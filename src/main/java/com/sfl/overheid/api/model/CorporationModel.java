@@ -20,7 +20,7 @@ public class CorporationModel implements Serializable {
 
     //region Properties
     @JsonProperty("actief")
-    private boolean actief;
+    private String actief;
 
     @JsonProperty("bestaandehandelsnaam")
     private String bestaandehandelsnaam;
@@ -75,7 +75,7 @@ public class CorporationModel implements Serializable {
     public CorporationModel() {
     }
 
-    public CorporationModel(final boolean actief,
+    public CorporationModel(final String actief,
                             final String bestaandehandelsnaam,
                             final int dossiernummer,
                             final String handelsnaam,
@@ -191,11 +191,11 @@ public class CorporationModel implements Serializable {
     //endregion
 
     //region Properties getters and setters
-    public boolean isActief() {
+    public String getActief() {
         return actief;
     }
 
-    public void setActief(final boolean actief) {
+    public void setActief(final String actief) {
         this.actief = actief;
     }
 

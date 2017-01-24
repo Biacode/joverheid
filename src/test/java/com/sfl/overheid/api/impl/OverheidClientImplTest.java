@@ -28,8 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.reset;
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.fail;
 
 /**
@@ -188,11 +187,8 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
     public void testGetCorporationsScenario2() {
         resetAll();
         // test data
-        final Map<String, String> filters = new HashMap<>();
-        filters.put("size", "10");
-        filters.put("filters[postcode]", "3083cz");
         final String query = UUID.randomUUID().toString();
-        final GetCorporationsRequest request = new GetCorporationsRequest(query, filters);
+        final GetCorporationsRequest request = new GetCorporationsRequest(query);
         final OverheidResult<GetCorporationsResponse> expectedResponse
                 = new OverheidResult<>(OverheidErrorTypeModel.NOT_AUTHORIZED);
         // expectations
@@ -210,11 +206,8 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
     public void testGetCorporationsScenario3() {
         resetAll();
         // test data
-        final Map<String, String> filters = new HashMap<>();
-        filters.put("size", "10");
-        filters.put("filters[postcode]", "3083cz");
         final String query = UUID.randomUUID().toString();
-        final GetCorporationsRequest request = new GetCorporationsRequest(query, filters);
+        final GetCorporationsRequest request = new GetCorporationsRequest(query);
         final OverheidResult<GetCorporationsResponse> expectedResponse
                 = new OverheidResult<>(OverheidErrorTypeModel.UNKNOWN);
         // expectations
@@ -232,19 +225,14 @@ public class OverheidClientImplTest extends AbstractOverheidUniTest {
     public void testGetCorporationsScenario4() {
         resetAll();
         // test data
-        final Map<String, String> filters = new HashMap<>();
-        filters.put("size", "10");
-        filters.put("filters[postcode]", "3083cz");
         final String query = UUID.randomUUID().toString();
-        final GetCorporationsRequest request = new GetCorporationsRequest(query, filters);
+        final GetCorporationsRequest request = new GetCorporationsRequest(query);
         final OverheidResult<GetCorporationsResponse> expectedResponse
                 = new OverheidResult<>(new GetCorporationsResponse());
         // expectations
         expect(client.target(API_BASE_PATH)).andReturn(webTarget);
         expect(webTarget.queryParam("query", query)).andReturn(webTarget);
-        for (final String key : request.getFilters().keySet()) {
-            expect(webTarget.queryParam(key, request.getFilters().get(key))).andReturn(webTarget);
-        }
+        expect(webTarget.queryParam(anyObject(), anyObject())).andReturn(webTarget).anyTimes();
         expect(webTarget.request(MediaType.APPLICATION_JSON_TYPE)).andReturn(builder);
         expectAuthHeader();
         expect(builder.get(new GenericType<OverheidResult<GetCorporationsResponse>>() {

@@ -79,11 +79,25 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
     public OverheidResult<GetCorporationsResponse> getCorporations(final GetCorporationsRequest request) {
         assertOverheidRequest(request);
         try {
-            WebTarget target = getClient().target(API_BASE_PATH).queryParam("query", request.getQuery());
-            for (final Map.Entry<String, String> entry : request.getFilters().entrySet()) {
-                target = target.queryParam(entry.getKey(), entry.getValue());
-            }
-            return target
+            return getClient()
+                    .target(API_BASE_PATH)
+                    .queryParam("query", request.getQuery())
+                    .queryParam("fields[]", "actief")
+                    .queryParam("fields[]", "bestaandehandelsnaam")
+                    .queryParam("fields[]", "dossiernummer")
+                    .queryParam("fields[]", "handelsnaam")
+                    .queryParam("fields[]", "handelsnaam_url")
+                    .queryParam("fields[]", "huisnummer")
+                    .queryParam("fields[]", "huisnummertoevoeging")
+                    .queryParam("fields[]", "plaats")
+                    .queryParam("fields[]", "postcode")
+                    .queryParam("fields[]", "status")
+                    .queryParam("fields[]", "straat")
+                    .queryParam("fields[]", "straat_url")
+                    .queryParam("fields[]", "subdossiernummer")
+                    .queryParam("fields[]", "type")
+                    .queryParam("fields[]", "vestigingsnummer")
+                    .queryParam("fields[]", "subtype")
                     .request(MediaType.APPLICATION_JSON_TYPE)
                     .header(API_KEY_HEADER_NAME, getApiKey())
                     .get(new GenericType<OverheidResult<GetCorporationsResponse>>() {
