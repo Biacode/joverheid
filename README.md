@@ -1,5 +1,5 @@
 ### CI Status
-[![Build Status](https://travis-ci.org/bia-code/joverheid.svg?branch=master)](https://travis-ci.org/bia-code/joverheid)
+[![Build Status](https://travis-ci.org/Biacode/joverheid.svg?branch=master)](https://travis-ci.org/Biacode/joverheid)
 [![SonarCube](https://getstreaming.files.wordpress.com/2012/10/sonar.png)](https://sonarqube.com/dashboard/index/com.sfl.joverheid:joverheid)
 # joverheid
 Java implementation of Overheid.io API
