@@ -29,6 +29,7 @@ import java.util.Map;
  * Date: 10/5/16
  * Time: 11:44 AM
  */
+@SuppressWarnings({"squid:S1075"})
 public class OverheidClientImpl extends AbstractOverheidClient implements OverheidClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OverheidClientImpl.class);
@@ -38,6 +39,8 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
     private static final String SUGGESTER_BASE_PATH = "https://overheid.io/suggest/kvk";
 
     private static final String API_KEY_HEADER_NAME = "Ovio-api-key";
+
+    private static final String FIELDS_FILTER_QUERY_PARAM = "fields[]";
 
     //region Exception messages
     private static final String NOT_AUTHORIZED_EXCEPTION_MSG = "Not authorized exception - {} occur while processing request - {}";
@@ -82,22 +85,22 @@ public class OverheidClientImpl extends AbstractOverheidClient implements Overhe
             return getClient()
                     .target(API_BASE_PATH)
                     .queryParam("query", request.getQuery())
-                    .queryParam("fields[]", "actief")
-                    .queryParam("fields[]", "bestaandehandelsnaam")
-                    .queryParam("fields[]", "dossiernummer")
-                    .queryParam("fields[]", "handelsnaam")
-                    .queryParam("fields[]", "handelsnaam_url")
-                    .queryParam("fields[]", "huisnummer")
-                    .queryParam("fields[]", "huisnummertoevoeging")
-                    .queryParam("fields[]", "plaats")
-                    .queryParam("fields[]", "postcode")
-                    .queryParam("fields[]", "status")
-                    .queryParam("fields[]", "straat")
-                    .queryParam("fields[]", "straat_url")
-                    .queryParam("fields[]", "subdossiernummer")
-                    .queryParam("fields[]", "type")
-                    .queryParam("fields[]", "vestigingsnummer")
-                    .queryParam("fields[]", "subtype")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "actief")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "bestaandehandelsnaam")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "dossiernummer")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "handelsnaam")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "handelsnaam_url")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "huisnummer")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "huisnummertoevoeging")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "plaats")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "postcode")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "status")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "straat")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "straat_url")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "subdossiernummer")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "type")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "vestigingsnummer")
+                    .queryParam(FIELDS_FILTER_QUERY_PARAM, "subtype")
                     .request(MediaType.APPLICATION_JSON_TYPE)
                     .header(API_KEY_HEADER_NAME, getApiKey())
                     .get(new GenericType<OverheidResult<GetCorporationsResponse>>() {
