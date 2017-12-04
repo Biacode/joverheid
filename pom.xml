@@ -6,7 +6,7 @@
 
     <groupId>org.biacode.joverheid</groupId>
     <artifactId>joverheid</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Overheid API Client</name>
     <description>The overheid.io API client</description>
     <url>https://github.com/Biacode/joverheid</url>
