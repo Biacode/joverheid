@@ -24,11 +24,11 @@ Then you need pass client implementation to OverheidClient as constructor param.
 In application context XML add the following XML definition
 ```java
 <bean id="overheidJerseyClientBuilder"
-          class="com.sfl.overheid.api.configuration.impl.OverheidJerseyClientBuilderImpl"/>
+          class="org.biacode.joverheid.api.configuration.impl.OverheidJerseyClientBuilderImpl"/>
 
 <bean id="overheidJerseyClient" factory-bean="overheidJerseyClientBuilder" factory-method="build"/>
 
-<bean id="overheidClient" class="com.sfl.overheid.api.client.impl.OverheidClientImpl">
+<bean id="overheidClient" class="org.biacode.joverheid.api.client.impl.OverheidClientImpl">
     <constructor-arg name="client" ref="overheidJerseyClient"/>
 </bean>
 
@@ -40,11 +40,11 @@ Then construct jersey client as follows
 package my.application;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.sfl.overheid.api.client.OverheidClient;
-import com.sfl.overheid.api.client.impl.OverheidClientImpl;
-import com.sfl.overheid.api.model.common.OverheidResult;
-import com.sfl.overheid.api.model.request.GetCorporationsRequest;
-import com.sfl.overheid.api.model.response.GetCorporationsResponse;
+import org.biacode.joverheid.api.client.OverheidClient;
+import org.biacode.joverheid.api.client.impl.OverheidClientImpl;
+import org.biacode.joverheid.api.model.common.OverheidResult;
+import org.biacode.joverheid.api.model.request.GetCorporationsRequest;
+import org.biacode.joverheid.api.model.response.GetCorporationsResponse;
 
 import javax.ws.rs.client.ClientBuilder;
 import java.util.HashMap;
